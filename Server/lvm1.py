@@ -40,5 +40,5 @@ def lvm1(client) :
 			client.send("dialog --infobox \" Physical Volume Successfully Removed \n Sending to Main Menu....\" 6 45")
 			sleep(1)
 			return
-
+	return
 

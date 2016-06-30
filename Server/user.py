@@ -58,12 +58,11 @@ def user(client) :
 		return
 	elif choice == "3" :
 		name = username2(client)
-		temporary = getstatusoutput("userdel -r"+ name)
+		temporary = getstatusoutput("userdel -r "+ name)
 		client.send("recieve only")
 		client.send("dialog --infobox \" User Successfully Deleted \n Sending to Main Menu\" 7 30")
 		sleep(1)
 		return
 	else :
 		return
-
-
+	return

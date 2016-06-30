@@ -6,7 +6,7 @@ from commands import getstatusoutput
 from time import sleep
 
 ob = socket.socket()
-ip = "192.168.2.81"#raw_input("Enter Ip : ") 
+ip = #raw_input("Enter Ip : ") 
 ob.bind((ip,14011))
 ob.listen(6)
 client,addr = ob.accept()

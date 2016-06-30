@@ -124,6 +124,6 @@ def lvm2(client) :
 			client.send("dialog --infobox \" Volume Group Successfully Reduced \n Sending to Main Menu....\" 6 45")
 			sleep(1)
 			return
-
+	return
 
 
