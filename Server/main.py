@@ -15,12 +15,12 @@ def main(client) :
 	if names.rfind(user) == -1 or password != "redhat" :
 		client.send("recieve only")
 		client.send("dialog --infobox \"Incorrect Password or User Name \n Terminating....\" 5 40")
-		sleep(1)
+		sleep(2)
 		client.send("false")
 	else :
 		client.send("recieve only")
 		client.send("dialog --infobox \"Authentified User \n Processing...\" 5 25")	
-		sleep(1)
+		sleep(2)
 		import menu
 		menu.menu(client)
 	

@@ -16,7 +16,7 @@ def lvm3(client) :
 		if temp[1].rfind(lvname) != -1 :
 			client.send("recieve only")
 			client.send("dialog --infobox \" Logical Volume already Exists \n Sending to Main Menu....\" 6 45")
-			sleep(1)
+			sleep(2.5)
 			return
 		client.send("dialog --inputbox \" Enter Volume Group Name : \" 10 40")
 		vgname = client.recv(1024)		
@@ -24,7 +24,7 @@ def lvm3(client) :
 		if temp[1].rfind(vgname) == -1 :
 			client.send("recieve only")
 			client.send("dialog --infobox \" Volume Group does not Exists \n Sending to Main Menu....\" 6 42")
-			sleep(1)
+			sleep(2.5)
 			return
 		client.send("dialog --inputbox \" Enter Logical Volume Size : \" 10 40")
 		lvsize = client.recv(1024)
@@ -32,7 +32,7 @@ def lvm3(client) :
 		if temp[0] != 0 : 
 			client.send("recieve only")
 			client.send("dialog --infobox \" Insufficient Space.. \n Sending to Main Menu....\" 6 40")
-			sleep(1)
+			sleep(2.5)
 			return
 	 	else :
 			system("mkfs /dev" + vgname + "/" + lvname)
@@ -40,7 +40,7 @@ def lvm3(client) :
 			system("mount /dev" + vgname + "/" + lvname + "/media/" + lvname + "_mount")
 			client.send("recieve only")
 			client.send("dialog --infobox \" Logical Volume Successfully \n Sending to Main Menu....\" 6 40")
-			sleep(1)
+			sleep(2.5)
 			return
 	elif create == "2" : 
 		client.send("dialog --inputbox \" Enter Logical Volume Name : \" 10 40")
@@ -49,7 +49,7 @@ def lvm3(client) :
 		if temp[1].rfind(lvname) != -1 :
 			client.send("recieve only")
 			client.send("dialog --infobox \" Logical Volume already Exists \n Sending to Main Menu....\" 6 45")
-			sleep(1)
+			sleep(2.5)
 			return
 		system("umount /media" + lvname + "_mount")
 		client.send("dialog --inputbox \" Enter Volume Group Name : \" 10 40")
@@ -58,18 +58,18 @@ def lvm3(client) :
 		if temp[1].rfind(vgname) == -1 :
 			client.send("recieve only")
 			client.send("dialog --infobox \" Volume Group does not Exists \n Sending to Main Menu....\" 6 42")
-			sleep(1)
+			sleep(2.5)
 			return
 		temp  = getstatusoutput("lvremove /dev/" + vgname + "/" + lvname + " -y")
 		if temp[0] != 0 : 
 			client.send("recieve only")
-			client.send("dialog --infobox \" Logical Volume cannot be Deleted \n Sending to Main Menu....\" 6 42")
-			sleep(1)
+			client.send("dialog --infobox \" Logical Volume cannot be Deleted \n " + temp[1] + " \nSending to Main Menu....\" 6 42")
+			sleep(2.5)
 			return
 	 	else :
 			client.send("recieve only")
 			client.send("dialog --infobox \" Logical Volume Successfully \n Sending to Main Menu....\" 6 40")
-			sleep(1)
+			sleep(2.5)
 			return
 	elif create == "3" :
 		client.send("dialog --inputbox \" Enter Logical Volume Name : \" 10 40")
@@ -78,7 +78,7 @@ def lvm3(client) :
 		if temp[1].rfind(lvname) != -1 :
 			client.send("recieve only")
 			client.send("dialog --infobox \" Logical Volume already Exists \n Sending to Main Menu....\" 6 45")
-			sleep(1)
+			sleep(2.5)
 			return
 		client.send("dialog --inputbox \" Enter Volume Group Name : \" 10 40")
 		vgname = client.recv(1024)		
@@ -86,7 +86,7 @@ def lvm3(client) :
 		if temp[1].rfind(vgname) == -1 :
 			client.send("recieve only")
 			client.send("dialog --infobox \" Volume Group does not Exists \n Sending to Main Menu....\" 6 42")
-			sleep(1)
+			sleep(2.5)
 			return
 		client.send("dialog --inputbox \" Enter Logical Volume Size : \" 10 40")
 		lvsize = client.recv(1024)		
@@ -94,13 +94,13 @@ def lvm3(client) :
 		if temp[0] != 0 : 
 			client.send("recieve only")
 			client.send("dialog --infobox \" Insufficient Space.. \n Sending to Main Menu....\" 6 40")
-			sleep(1)
+			sleep(2.5)
 			return
 		else :
 			system("resize2fs /dev/" + vgname + "/" + lvname)
 			client.send("recieve only")
 			client.send("dialog --infobox \" Logical Volume Successfully \n Sending to Main Menu....\" 6 40")
-			sleep(1)
+			sleep(2.5)
 			return
 	elif create == "4" :
 		client.send("dialog --inputbox \" Enter Logical Volume Name : \" 10 40")
@@ -109,7 +109,7 @@ def lvm3(client) :
 		if temp[1].rfind(lvname) != -1 :
 			client.send("recieve only")
 			client.send("dialog --infobox \" Logical Volume already Exists \n Sending to Main Menu....\" 6 45")
-			sleep(1)
+			sleep(2.5)
 			return
 		client.send("dialog --inputbox \" Enter Volume Group Name : \" 10 40")
 		vgname = client.recv(1024)
@@ -117,7 +117,7 @@ def lvm3(client) :
 		if temp[1].rfind(vgname) == -1 :
 			client.send("recieve only")
 			client.send("dialog --infobox \" Volume Group does not Exists \n Sending to Main Menu....\" 6 42")
-			sleep(1)
+			sleep(2.5)
 			return
 		client.send("dialog --inputbox \" Enter Logical Volume Size : \" 10 40")
 		lvsize = client.recv(1024)		
@@ -125,13 +125,13 @@ def lvm3(client) :
 		if temp[0] != 0 : 
 			client.send("recieve only")
 			client.send("dialog --infobox \" Insufficient Space.. \n Sending to Main Menu....\" 6 40")
-			sleep(1)
+			sleep(2.5)
 			return
 		else :
 			system("resize2fs /dev/" + vgname + "/" + lvname)
 			client.send("recieve only")
 			client.send("dialog --infobox \" Logical Volume Successfully \n Sending to Main Menu....\" 6 40")
-			sleep(1)
+			sleep(2.5)
 			return
 	else :
 		return

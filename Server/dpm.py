@@ -14,6 +14,8 @@ def dpm(client) :
 		name = client.recv(1024)
 		test = getstatusoutput("parted /dev/sda print | tail -2")[1].split()
 		if test[4] == "primary" :
+			client.send("recieve only")
+			client.send("loop")				
 			string = getstatusoutput("parted /dev/sda  print free | tail -2 ")[1].split()			
 			system("parted /dev/sda mkpart extended " + string[0] + " " + string[1])
 		string = getstatusoutput("parted /dev/sda  print free | tail -3 | head -1")[1].split()
@@ -23,9 +25,11 @@ def dpm(client) :
 		if size > string[2] :
 			client.send("recieve only")
 			client.send("dialog --infobox \" Specified Space Not Available\n Sending to Main Menu...\" 7 35")
-			sleep(1)
+			sleep(2.5)
 			return
 		end = int(string[0].split("G")[0]) + float(size.split("G")[0])
+		client.send("recieve only")
+		client.send("loop")			
 		system("parted /dev/sda mkpart logical " + string[0] + " {}".format(end) + "G")
 		system("mkdir /media/" + name)
 		form = "/dev/sda" + getstatusoutput("parted /dev/sda print | tail -2")[1].split()[0]		
@@ -36,7 +40,7 @@ def dpm(client) :
 		file.close()
 		client.send("recieve only")
 		client.send("dialog --infobox \" Partition Successfully Created\n Sending to Main Menu...\" 7 37")
-		sleep(1)
+		sleep(2.5)
 		return
 	elif choice == "2" :
 		string = getstatusoutput("parted /dev/sda print | tail -2")[1].split()
@@ -51,7 +55,7 @@ def dpm(client) :
 			file.close()
 		client.send("recieve only")
 		client.send("dialog --infobox \" Partition Successfully Removed\n Sending to Main Menu...\" 7 37")
-		sleep(1)
+		sleep(2.5)
 		return
 	else :
 		return

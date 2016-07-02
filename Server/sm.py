@@ -8,6 +8,8 @@ from time import sleep
 
 #Controller Function 
 def control(client,name1, name2) :
+	client.send("recieve only")
+	client.send("loop")	
 	temp = getstatusoutput("rpm -q " + name1)
 	if temp[0] != 0 :
 		temp1 = getstatusoutput("yum install " + name1 + " -y")
@@ -15,18 +17,18 @@ def control(client,name1, name2) :
 			client.send("recieve only")
 			message = "Download " + name1 + " Software"
 			client.send("dialog --infobox \"" + message + "\n Sending to Main Menu\" 7 35")
-			sleep(1)
+			sleep(2.5)
 			return
 	system("systemctl restart " + name2)
 	system("systemctl enable " + name2)
 	client.send("recieve only")
 	client.send("dialog --infobox \"Server Successfully Installed \n Sending to Main Menu\" 10 40")
-	sleep(1)	
+	sleep(2.5)	
 	return
 
 def sm(client) :
 
-	client.send("dialog --menu \"Server List\" 30 50 9  1 \"Apache Server\" 2 \"File Transfer Protocol Server\" 3 \"Network Information System Server\" 4 \"Network File Sharing Server\" 5 \"Dynamic Host Configuration Protocol Server\" 6 \"Mail Server\" 7 \"Remote Login Server\" 8 \"MariaDB Server\" 9 \"Samba Server\"")
+	client.send("dialog --menu \"Server List\" 30 55 9  1 \"Apache Server\" 2 \"File Transfer Protocol Server\" 3 \"Network Information System Server\" 4 \"Network File Sharing Server\" 5 \"Dynamic Host Configuration Protocol Server\" 6 \"Mail Server\" 7 \"Remote Login Server\" 8 \"MariaDB Server\" 9 \"Samba Server\"")
 	choice = client.recv(5)
 
 	if choice == "1" :

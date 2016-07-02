@@ -16,7 +16,7 @@ def lvm2(client) :
 		if temp[1].rfind(vgname) != -1 :
 			client.send("recieve only")
 			clientsend("dialog --infobox \" Volume Group already Exists \n Sending to Main Menu....\" 6 42")
-			sleep(1)
+			sleep(2.5)
 			return
 		client.send("dialog --inputbox \" Enter 1st Device Name : \" 10 40")
 		name1 = client.recv(1204)		
@@ -24,7 +24,7 @@ def lvm2(client) :
 		if temp[0] != 0 :	
 			client.send("recieve only")
 			client.send("dialog --infobox \" Device is not Physical Volume \n Sending to Main Menu....\" 6 42")
-			sleep(1)
+			sleep(2.5)
 			return
 		client.send("dialog --inputbox \" Enter 2st Device Name(if required) :\n Else Press \'n\' \" 10 42")
 		name2 = client.recv(1024)		
@@ -32,7 +32,7 @@ def lvm2(client) :
 		if temp[0] != 0 and name2 != "n":	
 			client.send("recieve only")
 			client.send("dialog --infobox \" Device is not Physical Volume \n Sending to Main Menu....\" 6 42")
-			sleep(1)
+			sleep(2.5)
 			return
 		if name2 != "n" :
 			temp = getstatusoutput("vgcreate " + vgname + " " + name1 + " " + name2)
@@ -40,13 +40,13 @@ def lvm2(client) :
 			temp = getstatusoutput("vgcreate " + vgname + " " + name1)
 		if temp[0] != 0 :
 			client.send("recieve only")
-			client.send("dialog --infobox \" Volume Group cannot be Created \n Sending to Main Menu....\" 6 40")
-			sleep(1)
+			client.send("dialog --infobox \" Volume Group cannot be Created \n" + temp[1] + "\nSending to Main Menu....\" 6 40")
+			sleep(2.5)
 			return
 		else :	
 			client.send("recieve only")
 			client.send("dialog --infobox \" Volume Group Successfully Created \n Sending to Main Menu....\" 6 45")
-			sleep(1)
+			sleep(2.5)
 			return
 	elif create == "2" :
 		client.send("dialog --inputbox \" Enter Volume Group Name : \" 10 40")
@@ -55,18 +55,18 @@ def lvm2(client) :
 		if temp[1].rfind(vgname) != -1 :
 			client.send("recieve only")
 			client.send("dialog --infobox \" Volume Group does not Exists \n Sending to Main Menu....\" 6 42")
-			sleep(1)
+			sleep(2.5)
 			return
 		temp = getstatusoutput("vgremove " + vgname)
 		if temp[0] != 0 :
 			client.send("recieve only")
-			client.send("dialog --infobox \" Volume Group cannot be Removed \n Sending to Main Menu....\" 6 40")
-			sleep(1)
+			client.send("dialog --infobox \" Volume Group cannot be Removed \n" +  temp[1] + " \nSending to Main Menu....\" 6 40")
+			sleep(2.5)
 			return
 		else :	
 			client.send("recieve only")
 			client.send("dialog --infobox \" Volume Group Successfully Removed \n Sending to Main Menu....\" 6 45")
-			sleep(1)
+			sleep(2.5)
 			return
 	elif create == "3" :
 		client.send("dialog --inputbox \" Enter Volume Group Name : \" 10 40")
@@ -75,7 +75,7 @@ def lvm2(client) :
 		if temp[1].rfind(vgname) != -1 :
 			client.send("recieve only")
 			client.send("dialog --infobox \" Volume Group already Exists \n Sending to Main Menu....\" 6 42")
-			sleep(1)
+			sleep(2.5)
 			return
 		client.send("dialog --inputbox \" Enter 1st Device Name : \" 10 40")
 		name1 = client.recv(1024)		
@@ -83,18 +83,18 @@ def lvm2(client) :
 		if temp[0] != 0 :	
 			client.send("recieve only")
 			client.send("dialog --infobox \" Device is not Physical Volume \n Sending to Main Menu....\" 6 42")
-			sleep(1)
+			sleep(2.5)
 			return
 		temp = getstatusoutput("vgextend " + vgname + " " + name1)
 		if temp[0] != 0 :
 			client.send("recieve only")
-			client.send("dialog --infobox \" Volume Group cannot be Extended \n Sending to Main Menu....\" 6 40")
-			sleep(1)
+			client.send("dialog --infobox \" Volume Group cannot be Extended \n" + temp[1] + "\nSending to Main Menu....\" 6 40")
+			sleep(2.5)
 			return
 		else :	
 			client.send("recieve only")
 			client.send("dialog --infobox \" Volume Group Successfully Extended \n Sending to Main Menu....\" 6 45")
-			sleep(1)
+			sleep(2.5)
 			return
 	elif create == "4" :
 		client.send("dialog --inputbox \" Enter Volume Group Name : \" 10 40")
@@ -103,7 +103,7 @@ def lvm2(client) :
 		if temp[1].rfind(vgname) != -1 :
 			client.send("recieve only")
 			client.send("dialog --infobox \" Volume Group already Exists \n Sending to Main Menu....\" 6 42")
-			sleep(1)
+			sleep(2.5)
 			return
 		client.send("dialog --inputbox \" Enter 1st Device Name : \" 10 40")
 		name1 = client.recv(1024)		
@@ -111,18 +111,18 @@ def lvm2(client) :
 		if temp[0] != 0 :	
 			client.send("recieve only")
 			client.send("dialog --infobox \" Device is not Physical Volume \n Sending to Main Menu....\" 6 42")
-			sleep(1)
+			sleep(2.5)
 			return
 		temp = getstatusoutput("vgreduce " + vgname + " " + name1)
 		if temp[0] != 0 :
 			client.send("recieve only")
-			client.send("dialog --infobox \" Volume Group cannot be Reduced \n Sending to Main Menu....\" 6 40")
-			sleep(1)
+			client.send("dialog --infobox \" Volume Group cannot be Reduced \n" + temp[1] + "\n Sending to Main Menu....\" 6 40")
+			sleep(2.5)
 			return
 		else :	
 			client.send("recieve only")
 			client.send("dialog --infobox \" Volume Group Successfully Reduced \n Sending to Main Menu....\" 6 45")
-			sleep(1)
+			sleep(2.5)
 			return
 	return
 

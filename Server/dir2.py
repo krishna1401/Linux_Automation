@@ -11,7 +11,7 @@ def dir2(client) :
 	if temporary[0] != 0 :
 		client.send("recieve only")
 		client.send("dialog --infobox \" Incorrect Folder Path \n Sending to Main Menu....\" 6 30")
-		sleep(1)
+		sleep(2.5)
 		return
 	client.send("dialog --inputbox \" Enter Folder Name : \" 10 35")
 	fname = client.recv(1024)	
@@ -19,7 +19,7 @@ def dir2(client) :
 	if commands.getstatusoutput("locate -c " + fpath)[1] == 0 :
 		client.send("recieve only")
 		client.send("dialog --infobox \" No such Directory Exists...\n Sending to Main Menu...\" 7 35")
-		sleep(1)
+		sleep(2.5)
 		return
 	temporary = getstatusoutput("rmdir " + fpath)
 	if temporary[0] != 0 :
@@ -30,7 +30,7 @@ def dir2(client) :
 			getstatusoutput("rm -rf " + fpath)
 	client.send("recieve only")
 	client.send("dialog --infobox \" Directory Sucessfully Removed...\n Sending to Main Menu...\" 7 35")
-	sleep(1)
+	sleep(2.5)
 	return
 
 

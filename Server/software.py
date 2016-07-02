@@ -16,22 +16,22 @@ def software(client) :
 		if temp[0] != 0 :
 			client.send("recieve only")
 			client.send("dialog --infobox \"No such Software Exists \n Sending to Main Menu\" 7 30")		
-			sleep(1)
+			sleep(2.5)
 			return
 		client.send("recieve only")
 		client.send("dialog --infobox \"Software Successfully Installed \n Sending to Main Menu\" 7 35")		
-		sleep(1)
+		sleep(2.5)
 		return
 	elif choice == "2" :
 		temp = getstatusoutput("yum remove " + software + " -y")
 		if temp[0] != 0 :
 			client.send("recieve only")
 			client.send("dialog --infobox \"No such Software Exists \n Sending to Main Menu\" 7 30")		
-			sleep(1)
+			sleep(2.5)
 			return
 		client.send("recieve only")
 		client.send("dialog --infobox \"Software Successfully Removed \n Sending to MainMenu\" 7 35")		
-		sleep(1)
+		sleep(2.5)
 		return
 	elif choice == "3" :
 		temp = getstatusoutput("yum info " + software)
@@ -39,7 +39,7 @@ def software(client) :
 		if string.rfind("Name") == -1:
 			client.send("recieve only")
 			client.send("dialog --infobox \"No such Software Exists \n Sending to Main Menu\" 7 30")		
-			sleep(1)
+			sleep(2.5)
 			return
 		client.send("recieve only")
 		client.send("dialog --infobox \"" + string[string.rindex("Name"):] + "\n Sending to Software Main Menu\" 7 30")		

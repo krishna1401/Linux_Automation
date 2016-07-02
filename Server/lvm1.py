@@ -12,7 +12,7 @@ def lvm1(client) :
 	if name.rfind("/dev/") == -1 :	
 		client.send("recieve only")
 		client.send("dialog --infobox \" No such Device Exists \n Sending to Main Menu....\" 6 30")
-		sleep(1)
+		sleep(2.5)
 		return
 	client.send("dialog --menu \"Physical List\" 25 40 2  1 \"Physical Volume Creation\" 2 \"Physical Volume Deletion\"")
 	create = client.recv(5)
@@ -20,25 +20,25 @@ def lvm1(client) :
 		temp = getstatusoutput("pvcreate " + name)
 		if temp[0] != 0 :
 			client.send("recieve only")
-			client.send("dialog --infobox \" Physical Volume cannot be Created \n Sending to Main Menu....\" 6 40")
-			sleep(1)
+			client.send("dialog --infobox \" Physical Volume cannot be Created \n " + temp[1] +"\nSending to Main Menu....\" 6 40")
+			sleep(2.5)
 			return
 		else :
 			client.send("recieve only")
 			client.send("dialog --infobox \" Physical Volume Successfully Created \n Sending to Main Menu....\" 6 45")
-			sleep(1)
+			sleep(2.5)
 			return
 	elif create == "2" :
 		temp = getstatusoutput("pvremove " + name)
 		if temp[0] != 0 :
 			client.send("recieve only")
-			client.send("dialog --infobox \" Physical Volume cannot be Removed \n Sending to Main Menu....\" 6 40")
-			sleep(1)
+			client.send("dialog --infobox \" Physical Volume cannot be Removed \n " + temp[1] +" \nSending to Main Menu....\" 6 40")
+			sleep(2.5)
 			return
 		else :
 			client.send("recieve only")
 			client.send("dialog --infobox \" Physical Volume Successfully Removed \n Sending to Main Menu....\" 6 45")
-			sleep(1)
+			sleep(2.5)
 			return
 	return
 

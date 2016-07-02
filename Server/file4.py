@@ -13,7 +13,7 @@ def username1(client) :
 	if names.rfind(temp) == -1 :
 		send("recieve only")
 		send("dialog --infobox \" No such Directory Exists...\n Sending to Main Menu...\" 7 35")
-		sleep(1)
+		sleep(2.5)
 		import menu
 		menu.menu(client)
 	return temp
@@ -27,7 +27,7 @@ def file4(client) :
 	if temporary[0] != 0 :
 		client.send("recieve only")
 		client.send("dialog --infobox \" Incorrect Folder Path \n Sending to Main Menu....\" 6 30")
-		sleep(1)
+		sleep(2.5)
 		return
 	name = username1(client)
 	client.send("dialog --inputbox \" Enter File Name : \" 10 35")
@@ -36,7 +36,7 @@ def file4(client) :
 	if commands.getstatusoutput("locate -c " + fpath)[1] == 0 :
 		client.send("recieve only")
 		client.send("dialog --infobox \" No such File Exists...\n Sending to Main Menu...\" 7 35")
-		sleep(1)
+		sleep(2.5)
 		return
 	client.send("dialog --menu \"Permission List\" 20 30 8  1 \"Change Ownership \" 2 \"Change Group\"")
 	create = client.recv(5)
@@ -44,14 +44,16 @@ def file4(client) :
 		system("chown " + name + " " + fpath)	
 		client.send("recieve only")
 		client.send("dialog --infobox \" Ownership Successfully Added\n Sending to Main Menu...\" 7 35")
-		sleep(1)
+		sleep(2.5)
 		return			
 	elif create == "2" :
 		system("chgrp " + name + " " + fpath)
 		client.send("recieve only")
 		client.send("dialog --infobox \" Group Successfully Added\n Sending to Main Menu...\" 7 35")
-		sleep(1)
+		sleep(2.5)
 		return
 	else :
 		return
 	return
+
+

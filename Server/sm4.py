@@ -13,7 +13,7 @@ def control_nfs(client) :
 	if temporary[0] != 0 :
 		client.send("recieve only")
 		client.send("dialog --infobox \"Incorrect Path, No such Path Exists \n Sending to Main Menu \" 10 40")
-		sleep(1)
+		sleep(2.5)
 		import menu
 		menu.menu(client)
 	client.send("dialog --inputbox \"Enter IP address of client or press * for all :\" 10 45 ")
@@ -26,21 +26,22 @@ def control_nfs(client) :
 
 
 def sm4(client) :
-
+	client.send("recieve only")
+	client.send("loop")	
 	temp = getstatusoutput("rpm -q nfs-utils")
 	if temp[0] != 0 :
 		temp1 = getstatusoutput("yum install nfs-server -y")
 		if temp1[0] != 0 :
 			client.send("recieve only")
 			client.send("dialog --infobox \" Download nfs-server Software \n Sending to Main Menu\" 7 35")
-			sleep(1)
+			sleep(2.5)
 			return
 	control_nfs(client)
 	system("systemctl restart nfs-server")
 	system("systemctl enable nfs-server")
 	client.send("recieve only")
 	client.send("dialog --infobox \"Server Successfully Installed \n Sending to Main Menu\" 10 40")
-	sleep(1)	
+	sleep(2.5)	
 	return
 
 

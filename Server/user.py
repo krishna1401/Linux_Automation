@@ -13,7 +13,7 @@ def username1(client) :
 	if names.rfind(temp) != -1 :
 		client.send("recieve only")
 		client.send("dialog --infobox \" User Name already Exists...\n Sending to Main Menu...\" 7 35")
-		sleep(1)		
+		sleep(2.5)		
 		#import main
 		main.main(client)	
 	return temp
@@ -28,7 +28,7 @@ def username2(client) :
 	if names.rfind(temp) == -1 :
 		client.send("recieve only")
 		client.send("dialog --infobox \" No such User Exists...\n Sending to Main Menu...\" 7 35")
-		sleep(1)
+		sleep(2.5)
 		#import main
 		main.main(client)
 	return temp
@@ -44,7 +44,7 @@ def user(client) :
 		system("useradd " + name + " -p " + password )	
 		client.send("recieve only")
 		client.send("dialog --infobox \" User Successfully Added \n Sending to Main Menu\" 7 30")
-		sleep(1)
+		sleep(2.5)
 		return
 	elif choice == "2" :
 		name = username1(client)
@@ -54,14 +54,14 @@ def user(client) :
 		system("echo -e " + password + " | passwd " + temp)
 		client.send("recieve only")
 		client.send("dialog --infobox \" Password Successfully Updated \n Sending to Main Menu\" 7 30")
-		sleep(1)
+		sleep(2.5)
 		return
 	elif choice == "3" :
 		name = username2(client)
 		temporary = getstatusoutput("userdel -r "+ name)
 		client.send("recieve only")
 		client.send("dialog --infobox \" User Successfully Deleted \n Sending to Main Menu\" 7 30")
-		sleep(1)
+		sleep(2.5)
 		return
 	else :
 		return
