@@ -121,16 +121,20 @@ def lvm3(client) :
 			return
 		client.send("dialog --inputbox \" Enter Logical Volume Size : \" 10 40")
 		lvsize = client.recv(1024)		
+		system("unmount /dev/" + vgname + "/" + lvname)
+		system("resize2fs /dev/" + vgname + "/" + lvname + "  " + lvsize)
 		temp  = getstatusoutput("lvresize --size -" + lvsize + " /dev/" + vgname + "/" + lvname + " -y")
 		if temp[0] != 0 : 
 			client.send("recieve only")
-			client.send("dialog --infobox \" Insufficient Space.. \n Sending to Main Menu....\" 6 40")
+			client.send("dialog --infobox \" " + temp[1] + "\n Sending to Main Menu....\" 6 40")
 			sleep(2.5)
 			return
 		else :
-			system("resize2fs /dev/" + vgname + "/" + lvname)
+			client.send("dialog --inputbox \" New Mount Folder Name : \" 10 40")
+			fname = client.recv(1024)
+			system("mount /dev/" + vgname + "/" + lvname + "   /media/" + fname)   
 			client.send("recieve only")
-			client.send("dialog --infobox \" Logical Volume Successfully \n Sending to Main Menu....\" 6 40")
+			client.send("dialog --infobox \" Logical Volume Successfully Reduced\n Sending to Main Menu....\" 6 40")
 			sleep(2.5)
 			return
 	else :

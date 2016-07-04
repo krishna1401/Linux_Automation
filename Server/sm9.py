@@ -20,7 +20,7 @@ def username(client) :
 	system("useradd -s /sbin/login " + temp)
 	password = ("dialog --insecure --passwordbox \"Enter Password : \" 7 25")
 	password = password + "\n" + password
-	system("echo -e " + password + " | passwd " + temp)
+	system("echo -e " + password + " | smdpasswd -a" + temp)
 
 def sm9(client) :
 	client.send("recieve only")
