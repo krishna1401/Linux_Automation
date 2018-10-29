@@ -19,7 +19,7 @@ system(welcome)
 while True:
 	message= ob.recv(2048)
 	if message == "false" :
-		print "Connection Cancelled"
+		print "connection cancelled"
 		message = ""
 		break
 	if message == "recieve only" :
