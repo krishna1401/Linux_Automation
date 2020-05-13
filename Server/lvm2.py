@@ -14,7 +14,7 @@ def lvm2(client) :
 		vgname = client.recv(1024)		
 		temp = getstatusoutput("vgs")
 		if temp[1].rfind(vgname) != -1 :
-			client.send("recieve only")
+			client.send("receive only")
 			clientsend("dialog --infobox \" Volume Group already Exists \n Sending to Main Menu....\" 6 42")
 			sleep(2.5)
 			return
@@ -22,7 +22,7 @@ def lvm2(client) :
 		name1 = client.recv(1204)		
 		temp = getstatusoutput("pvdisplay " + name1)
 		if temp[0] != 0 :	
-			client.send("recieve only")
+			client.send("receive only")
 			client.send("dialog --infobox \" Device is not Physical Volume \n Sending to Main Menu....\" 6 42")
 			sleep(2.5)
 			return
@@ -39,12 +39,12 @@ def lvm2(client) :
 		else :
 			temp = getstatusoutput("vgcreate " + vgname + " " + name1)
 		if temp[0] != 0 :
-			client.send("recieve only")
+			client.send("receive only")
 			client.send("dialog --infobox \" Volume Group cannot be Created \n" + temp[1] + "\nSending to Main Menu....\" 6 40")
 			sleep(2.5)
 			return
 		else :	
-			client.send("recieve only")
+			client.send("receive only")
 			client.send("dialog --infobox \" Volume Group Successfully Created \n Sending to Main Menu....\" 6 45")
 			sleep(2.5)
 			return
@@ -53,18 +53,18 @@ def lvm2(client) :
 		vgname = client.recv(1024)		
 		temp = getstatusoutput("vgs")
 		if temp[1].rfind(vgname) != -1 :
-			client.send("recieve only")
+			client.send("receive only")
 			client.send("dialog --infobox \" Volume Group does not Exists \n Sending to Main Menu....\" 6 42")
 			sleep(2.5)
 			return
 		temp = getstatusoutput("vgremove " + vgname)
 		if temp[0] != 0 :
-			client.send("recieve only")
+			client.send("receive only")
 			client.send("dialog --infobox \" Volume Group cannot be Removed \n" +  temp[1] + " \nSending to Main Menu....\" 6 40")
 			sleep(2.5)
 			return
 		else :	
-			client.send("recieve only")
+			client.send("receive only")
 			client.send("dialog --infobox \" Volume Group Successfully Removed \n Sending to Main Menu....\" 6 45")
 			sleep(2.5)
 			return
@@ -73,7 +73,7 @@ def lvm2(client) :
 		vgname = client.recv(1024)		
 		temp = getstatusoutput("vgs")
 		if temp[1].rfind(vgname) != -1 :
-			client.send("recieve only")
+			client.send("receive only")
 			client.send("dialog --infobox \" Volume Group already Exists \n Sending to Main Menu....\" 6 42")
 			sleep(2.5)
 			return
@@ -81,18 +81,18 @@ def lvm2(client) :
 		name1 = client.recv(1024)		
 		temp = getstatusoutput("pvdisplay " + name1)
 		if temp[0] != 0 :	
-			client.send("recieve only")
+			client.send("receive only")
 			client.send("dialog --infobox \" Device is not Physical Volume \n Sending to Main Menu....\" 6 42")
 			sleep(2.5)
 			return
 		temp = getstatusoutput("vgextend " + vgname + " " + name1)
 		if temp[0] != 0 :
-			client.send("recieve only")
+			client.send("receive only")
 			client.send("dialog --infobox \" Volume Group cannot be Extended \n" + temp[1] + "\nSending to Main Menu....\" 6 40")
 			sleep(2.5)
 			return
 		else :	
-			client.send("recieve only")
+			client.send("receive only")
 			client.send("dialog --infobox \" Volume Group Successfully Extended \n Sending to Main Menu....\" 6 45")
 			sleep(2.5)
 			return
@@ -101,7 +101,7 @@ def lvm2(client) :
 		vgname = client.recv(1024)		
 		temp = getstatusoutput("vgs")
 		if temp[1].rfind(vgname) != -1 :
-			client.send("recieve only")
+			client.send("receive only")
 			client.send("dialog --infobox \" Volume Group already Exists \n Sending to Main Menu....\" 6 42")
 			sleep(2.5)
 			return
@@ -109,18 +109,18 @@ def lvm2(client) :
 		name1 = client.recv(1024)		
 		temp = getstatusoutput("pvdisplay " + name1)
 		if temp[0] != 0 :	
-			client.send("recieve only")
+			client.send("receive only")
 			client.send("dialog --infobox \" Device is not Physical Volume \n Sending to Main Menu....\" 6 42")
 			sleep(2.5)
 			return
 		temp = getstatusoutput("vgreduce " + vgname + " " + name1)
 		if temp[0] != 0 :
-			client.send("recieve only")
+			client.send("receive only")
 			client.send("dialog --infobox \" Volume Group cannot be Reduced \n" + temp[1] + "\n Sending to Main Menu....\" 6 40")
 			sleep(2.5)
 			return
 		else :	
-			client.send("recieve only")
+			client.send("receive only")
 			client.send("dialog --infobox \" Volume Group Successfully Reduced \n Sending to Main Menu....\" 6 45")
 			sleep(2.5)
 			return
